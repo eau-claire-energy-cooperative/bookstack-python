@@ -60,3 +60,11 @@ And to POST you can follow this example:
 ```python
 >>> api.post_books_create({'name': 'Sample Book', 'description': 'Sample Description', 'tags': [{ 'name': 'Sample-Name', 'value': 'Sample-Value' }] })
 ```
+
+Downloading PDF exports also works, returning the raw binary file
+
+```python
+>>> pdf = api.get_books_export_pdf({"id": book_list['data'][0]['id']})
+>>>      with open(f"{book_list['data'][0]['name']}.pdf", "wb") as binary_file:
+>>>          binary_file.write(pdf)
+```
