@@ -1,19 +1,28 @@
-# bookstack
+# bookstack-python
 A Python wrapper for [BookStack's](https://www.bookstackapp.com) API
 
-Current version: 0.2.0-post1
-
 # Installation
-To install `bookstack`, run:
+To use this fork of `bookstack-python` you must install it from the repo.
 
-`pip install bookstack`
+```
+# create the virtual environment
+python3 -m venv .venv
+
+# activate and install dependencies
+source .venv/bin/activate
+
+# install the library
+
+pip3 install .
+
+```
 
 # Setup
 To use BookStack's API, you'll need to get a token ID and secret.
 
 You can find how to get these values from your BookStack instance's doc page at `http[s]://<example.com>/api/docs`
 
-**Note**: Your account's user group must have API usage priveleges enabled.
+**Note**: Your account's user group must have API usage privileges enabled.
 
 # Usage
 Once you've acquired your token ID and secret, you're ready to rock.
