@@ -35,7 +35,7 @@ class BookStack:
                 method_name = self._create_method_name(method_info)
 
                 setattr(
-                    self, 
+                    self,
                     method_name,
                     self._create_api_method(method_info)
                 )
@@ -91,7 +91,8 @@ class BookStack:
         try:
             content = response.json()
         except JSONDecodeError:
-            content = response.text
+            # if not JSON return raw content
+            content = response.content
 
         return content
 
@@ -115,9 +116,9 @@ class BaseURLSession(LimiterSession):
 
 
 class Auth(requests.auth.AuthBase):
-    def __init__(self, 
-                token_id, 
-                token_secret, 
+    def __init__(self,
+                token_id,
+                token_secret,
                 header_key='Authorization'
             ):
         self.header_key = header_key
