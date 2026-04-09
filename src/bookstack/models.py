@@ -1,5 +1,6 @@
 from json.decoder import JSONDecodeError
 import string
+import re
 import urllib
 import time
 
@@ -60,9 +61,15 @@ class BookStack:
             arg = args
             params = kwargs.get('params')
             if method_info['method'] != "POST":
+                # get a list of all placeholders available
+                placeholders = re.findall(r"\{(.*?)\}", uri)
                 try:
-                    uri = uri.replace('{id}', str(args[0]['id']))
-                    del arg[0]["id"]
+                    #replace all available values
+                    uri = uri.format(**args[0])
+
+                    # delete all placeholder values
+                    for p in placeholders:
+                        del arg[0][p]
                 except:
                     pass
             if method_info['method'] == "POST" or method_info['method'] == "PUT":
